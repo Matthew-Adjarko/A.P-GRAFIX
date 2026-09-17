@@ -461,30 +461,6 @@ nav a.active::after {
 }
 
 /* ===========================
-   PORTFOLIO / DESIGNS
-=========================== */
-.current-designs-1,
-.current-designs-2 {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 60px;
-    padding: 0 20px;
-}
-
-.design-image {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    object-fit: contain;
-    border-radius: 15px;
-    margin: 0 auto;
-    background: #f7f7f7;
-}
-
-/* ===========================
    ACADEMIC
 =========================== */
 .academic-background {
@@ -671,43 +647,237 @@ nav a.active::after {
 }
 
 /* ===========================
-   FLYER / DESIGN SECTIONS
+   DESIGN SECTION HEADINGS
 =========================== */
-.subtitle-description {
-    color: black;
-    background-color: rgb(250, 205, 205);
-    padding: 50px 20px;
-    text-align: center;
-    font-style: italic;
-    margin-top: 100px;
-    font-size: 35px;
-}
-
-.flyer-designs-1,
-.flyer-designs-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
+.design-section {
     padding: 0 20px;
-    align-items: start;
 }
 
-.flyer-image {
-    width: 100%;
+.subtitle-description {
+    position: relative;
+    display: block;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2rem;
+    color: #111;
+    background: transparent;
+    padding: 0 20px;
+    margin: 90px auto 0;
+    max-width: 700px;
+    line-height: 1.25;
+}
+
+/* Small red label above the title — pulled from data-label */
+.subtitle-description::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgb(174, 4, 4);
+    margin-bottom: 14px;
+}
+
+/* Subtle divider under the title */
+.subtitle-description::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: rgb(174, 4, 4);
+    border-radius: 3px;
+    margin: 22px auto 0;
+}
+
+.subtitle-description span {
+    color: rgb(174, 4, 4);
+}
+
+/* Reduce top margin when the header directly follows another tool heading */
+.design-section .subtitle-description {
+    margin-top: 40px;
+}
+
+/* ===========================
+   DESIGN CARDS (Index Sections)
+=========================== */
+.design-cards-grid {
+    display: grid;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 50px auto 0;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Two-card layout (Portfolio) */
+.design-cards-grid--two {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 800px;
+}
+
+/* Single-card layout (featured category cards) */
+.design-cards-grid--single {
+    grid-template-columns: 1fr;
+    max-width: 900px;
+}
+
+.design-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 18px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.design-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(174, 4, 4, 0.15);
+    border-color: rgba(174, 4, 4, 0.25);
+}
+
+/* Feature card: image on the left, text on the right (desktop) */
+.design-card--feature {
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.design-card--feature .design-card-media {
+    flex: 0 0 40%;
+    aspect-ratio: auto;
+    min-height: 320px;
+    border-radius: 0;
+}
+
+.design-card--feature .design-card-body {
+    flex: 1;
+    justify-content: center;
+    padding: 40px 45px;
+}
+
+.design-card--feature .design-card-body h3 {
+    font-size: 1.6rem;
+}
+
+.design-card--feature .design-card-body p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.design-card--feature .design-card-cta {
+    margin-top: 18px;
+}
+
+.design-card-media {
+    background: #f7f7f7;
+    aspect-ratio: 4 / 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 12px;
+}
+
+.design-card-media img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
     object-fit: contain;
-    border-radius: 12px;
-    background: #f7f7f7;
-    display: block;
-    margin: 0 auto;
-    transition: transform 0.3s ease;
+    border-radius: 8px;
+    transition: transform 0.5s ease;
 }
 
-.flyer-image:hover {
-    transform: scale(1.02);
-    position: relative;
-    z-index: 2;
+.design-card:hover .design-card-media img {
+    transform: scale(1.05);
+}
+
+.design-card-body {
+    padding: 22px 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.design-card-tag {
+    align-self: flex-start;
+    background: rgba(174, 4, 4, 0.1);
+    color: rgb(174, 4, 4);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 50px;
+}
+
+.design-card-body h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #111;
+    margin: 0;
+}
+
+.design-card-body p {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.design-card-cta {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 10px 20px;
+    background: rgb(174, 4, 4);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.design-card:hover .design-card-cta {
+    background: rgb(120, 0, 0);
+    transform: translateX(5px);
+}
+
+/* Feature card responsive: stack on smaller screens */
+@media screen and (max-width: 900px) {
+    .design-card--feature {
+        flex-direction: column;
+    }
+
+    .design-card--feature .design-card-media {
+        flex: none;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        min-height: 0;
+    }
+
+    .design-card--feature .design-card-body {
+        padding: 25px 25px 30px;
+    }
+
+    .design-card--feature .design-card-body h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .design-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 0 5px;
+    }
 }
 
 /* ===========================
@@ -1354,9 +1524,7 @@ footer {
     }
 
     .services-container,
-    .academic-background,
-    .current-designs-1,
-    .current-designs-2 {
+    .academic-background {
         flex-direction: column;
         align-items: center;
         gap: 25px;
@@ -1388,25 +1556,27 @@ footer {
         margin-top: 20px;
     }
 
-    .design-image,
-    .flyer-image {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
-
-    .flyer-designs-1,
-    .flyer-designs-2 {
+    .design-cards-grid {
         grid-template-columns: 1fr;
         gap: 25px;
+        padding: 0 5px;
+    }
+
+    /* New: section header sizing on mobile */
+    .subtitle-description {
+        font-size: 1.5rem;
+        margin-top: 60px;
         padding: 0 15px;
     }
 
-    .subtitle-description {
-        font-size: 24px;
-        padding: 30px 15px;
-        margin-top: 60px;
+    .subtitle-description::before {
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle-description::after {
+        margin-top: 18px;
     }
 
     .about h2,
@@ -1453,7 +1623,6 @@ footer {
     }
 
     .subtitle-description {
-        font-size: 20px;
+        font-size: 1.3rem;
     }
 }
-
